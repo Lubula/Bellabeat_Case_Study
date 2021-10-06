@@ -1,0 +1,117 @@
+# There diffrent csv within the Kaggle  Fitbit dataset (https://www.kaggle.com/arashnic/fitbit). The business task is used as focus lens, 
+# on what is data is required to solve the problem. I have identified the following datasets can solve the problem task: activity, calories , intensity, sleep, weight.
+
+# The first step is to assign simplier names to work with data easier.
+
+activity <- read.csv("/home/diretory/Fitabase Data 4.12.16-5.12.16/dailyActivity_merged.csv")
+calories <- read.csv("/home/diretory/Fitabase Data 4.12.16-5.12.16/hourlyCalories_merged.csv")
+intensities <- read.csv("/home/diretory/Fitabase Data 4.12.16-5.12.16/hourlyIntensities_merged.csv")
+sleep <- read.csv("/home/diretory/Fitabase Data 4.12.16-5.12.16/sleepDay_merged.csv")
+weight <- read.csv("/home/diretory/Fitabase Data 4.12.16-5.12.16/weightLogInfo_merged.csv")
+
+# Essitional to use the using View() and head() functions, just to confrim data has been loaded correctly. 
+
+head(activity)
+
+          Id ActivityDate TotalSteps TotalDistance TrackerDistance
+1 1503960366    4/12/2016      13162          8.50            8.50
+2 1503960366    4/13/2016      10735          6.97            6.97
+3 1503960366    4/14/2016      10460          6.74            6.74
+4 1503960366    4/15/2016       9762          6.28            6.28
+5 1503960366    4/16/2016      12669          8.16            8.16
+6 1503960366    4/17/2016       9705          6.48            6.48
+
+# Sample data is critical to be able to make proper recommendation. Too little data or unclean data can ruin the data leading to inaccurate recoomenadations. 
+#The n_distinct funtion() is used so that number participants in each data sets, n_distinct funtion() is used as values can repeat.
+ 
+
+n_distinct(activity$Id)
+n_distinct(calories$Id)
+n_distinct(intensities$Id)
+n_distinct(sleep$Id)
+n_distinct(weight$Id)
+
+
+# weight dataset is found to only have 8 participants, that is too low to make valid consulsions.
+# results are, 33 participants in the activity, calories and intensities data sets, 24 in the sleep and only 8 in the weight data set
+
+# Lets begin to explore the data. Lets use the pipeline %>% and the summery() function. 
+
+# activity, what does the total steps, tortal distance and calories . what does it reflect? Simply the explore phase of datasets
+
+activity %>%  
+  select(TotalSteps, TotalDistance, Calories) %>%
+  summary()
+  
+  
+     TotalSteps    TotalDistance       Calories   
+ Min.   :    0   Min.   : 0.000   Min.   :   0  
+ 1st Qu.: 3790   1st Qu.: 2.620   1st Qu.:1828  
+ Median : 7406   Median : 5.245   Median :2134  
+ Mean   : 7638   Mean   : 5.490   Mean   :2304  
+ 3rd Qu.:10727   3rd Qu.: 7.713   3rd Qu.:2793  
+ Max.   :36019   Max.   :28.030   Max.   :4900 
+  
+# Explore the datasets, using piplines and summery to dicovery trends that might stand out immmediatly
+#Explore number of active minutes per category
+
+activity %>%
++   select(VeryActiveMinutes, FairlyActiveMinutes, LightlyActiveMinutes) %>%
++   summary()
+ 
+ VeryActiveMinutes FairlyActiveMinutes LightlyActiveMinutes
+ Min.   :  0.00    Min.   :  0.00      Min.   :  0.0       
+ 1st Qu.:  0.00    1st Qu.:  0.00      1st Qu.:127.0       
+ Median :  4.00    Median :  6.00      Median :199.0       
+ Mean   : 21.16    Mean   : 13.56      Mean   :192.8       
+ 3rd Qu.: 32.00    3rd Qu.: 19.00      3rd Qu.:264.0       
+ Max.   :210.00    Max.   :143.00      Max.   :518.0       
+ 
+ # Calories
+ calories %>%
++   select(Calories) %>%
++   summary()
+    Calories     
+ Min.   : 42.00  
+ 1st Qu.: 63.00  
+ Median : 83.00  
+ Mean   : 97.39  
+ 3rd Qu.:108.00  
+ Max.   :948.00  
+ 
+# Sleep
+> sleep %>%
++   select(TotalSleepRecords, TotalMinutesAsleep, TotalTimeInBed) %>%
++   summary()
+
+ TotalSleepRecords TotalMinutesAsleep TotalTimeInBed 
+ Min.   :1.000     Min.   : 58.0      Min.   : 61.0  
+ 1st Qu.:1.000     1st Qu.:361.0      1st Qu.:403.0  
+ Median :1.000     Median :433.0      Median :463.0  
+ Mean   :1.119     Mean   :419.5      Mean   :458.6  
+ 3rd Qu.:1.000     3rd Qu.:490.0      3rd Qu.:526.0  
+ Max.   :3.000     Max.   :796.0      Max.   :961.0  
+
+# Weight
+
+ weight %>%
++   select(WeightKg, BMI) %>%
++   summary()
+
+    WeightKg           BMI       
+ Min.   : 52.60   Min.   :21.45  
+ 1st Qu.: 61.40   1st Qu.:23.96  
+ Median : 62.50   Median :24.39  
+ Mean   : 72.04   Mean   :25.19  
+ 3rd Qu.: 85.05   3rd Qu.:25.56  
+ Max.   :133.50   Max.   :47.54  
+
+
+Some discpoveries from phase 1, importing and exploring data:
+
+- The majority of the participants are lightly active.
+- On the average, participants sleep 1 time for 7 hours.
+- Body Mass Index(BMI) in the range 20-25 for participants 
+- Calories intake has the most drastic fluctions in terms of from min to max
+
+
