@@ -1,0 +1,93 @@
+# The first relationship that stands out has to be the Calories vs the Total steps. The more active, the more calories burned,
+# This is a critical factor consideringthe massive fluctautions in calories intake amongst participants.
+  
+ggplot(data=activity, aes(x=TotalSteps, y=Calories)) + 
+  geom_point() + geom_smooth() + labs(title="Total Steps vs. Calories")
+  
+
+# The more active = the more calories burned. This becomes a paramount considering that the calories intake has the hightwst fluctuations amongs the datasets
+# mentioned earlier obervations
+
+
+ggplot(data=sleep, aes(x=TotalMinutesAsleep, y=TotalTimeInBed)) + 
+  geom_point()+ labs(title="Total Minutes Asleep vs. Total Time in Bed")
+  
+#The relationship between Total Minutes Asleep and Total Time in Bed looks linear. 
+So if the Bellabeat users want to improve their sleep, we should consider using notification to go to sleep.
+
+# Let's look at intensities data over time (hourly)
+# this dataset combies the time and dat which finding the relationnship between the time amd intessity a bit difficult.
+# requires splitting date and time.
+
+intensities$ActivityHour=as.POSIXct(intensities$ActivityHour, format="%m/%d/%Y %I:%M:%S %p", tz=Sys.timezone())
+intensities$time <- format(intensities$ActivityHour, format = "%H:%M:%S")
+intensities$date <- format(intensities$ActivityHour, format = "%m/%d/%y")
+
+int_new <- intensities %>%
+  group_by(time) %>%
+  drop_na() %>%
+  summarise(mean_total_int = mean(TotalIntensity))
+
+ggplot(data=int_new, aes(x=time, y=mean_total_int)) + geom_histogram(stat = "identity", fill='darkblue') +
+  theme(axis.text.x = element_text(angle = 90)) +
+  labs(title="Average Total Intensity vs. Time")
+  
+  # found out that people are more active between 5 am and 10pm. Most activity happens between 5 pm and 7 pm. 
+  # Participants go to a gym or for a walk after finishing work. We can use this time in the Bellabeat app to remind and motivate users to go for a run or walk.
+  
+  
+  activity_sleep <- full_join(activity, sleep, keep = FALSE)
+  view(activity_sleep)
+  summary(activity_sleep)
+  
+   Id            ActivityDate         TotalSteps    TotalDistance   
+ Min.   :1.504e+09   Length:12668       Min.   :    0   Min.   : 0.000  
+ 1st Qu.:3.977e+09   Class :character   1st Qu.: 4676   1st Qu.: 3.180  
+ Median :4.703e+09   Mode  :character   Median : 8582   Median : 6.120  
+ Mean   :5.029e+09                      Mean   : 8124   Mean   : 5.745  
+ 3rd Qu.:6.962e+09                      3rd Qu.:11207   3rd Qu.: 7.920  
+ Max.   :8.878e+09                      Max.   :36019   Max.   :28.030  
+                                                                        
+ TrackerDistance  LoggedActivitiesDistance VeryActiveDistance
+ Min.   : 0.000   Min.   :0.0000           Min.   : 0.000    
+ 1st Qu.: 3.180   1st Qu.:0.0000           1st Qu.: 0.000    
+ Median : 6.120   Median :0.0000           Median : 0.530    
+ Mean   : 5.738   Mean   :0.1211           Mean   : 1.406    
+ 3rd Qu.: 7.890   3rd Qu.:0.0000           3rd Qu.: 2.310    
+ Max.   :28.030   Max.   :4.9421           Max.   :21.920    
+                                                             
+ ModeratelyActiveDistance LightActiveDistance SedentaryActiveDistance
+ Min.   :0.0000           Min.   : 0.000      Min.   :0.0000000      
+ 1st Qu.:0.0000           1st Qu.: 2.370      1st Qu.:0.0000000      
+ Median :0.4000           Median : 3.540      Median :0.0000000      
+ Mean   :0.7273           Mean   : 3.547      Mean   :0.0007405      
+ 3rd Qu.:1.0000           3rd Qu.: 4.850      3rd Qu.:0.0000000      
+ Max.   :6.4800           Max.   :10.710      Max.   :0.1100000      
+                                                                     
+ VeryActiveMinutes FairlyActiveMinutes LightlyActiveMinutes
+ Min.   :  0.00    Min.   :  0.00      Min.   :  0.0       
+ 1st Qu.:  0.00    1st Qu.:  0.00      1st Qu.:145.0       
+ Median :  8.00    Median : 10.00      Median :201.0       
+ Mean   : 23.93    Mean   : 17.23      Mean   :200.2       
+ 3rd Qu.: 36.00    3rd Qu.: 24.00      3rd Qu.:258.0       
+ Max.   :210.00    Max.   :143.00      Max.   :518.0       
+                                                           
+ SedentaryMinutes    Calories      SleepDay         TotalSleepRecords
+ Min.   :   0.0   Min.   :   0   Length:12668       Min.   :1.000    
+ 1st Qu.: 660.0   1st Qu.:1783   Class :character   1st Qu.:1.000    
+ Median : 738.0   Median :2162   Mode  :character   Median :1.000    
+ Mean   : 805.9   Mean   :2329                      Mean   :1.121    
+ 3rd Qu.: 878.0   3rd Qu.:2862                      3rd Qu.:1.000    
+ Max.   :1440.0   Max.   :4900                      Max.   :3.000    
+                                                    NA's   :227      
+ TotalMinutesAsleep TotalTimeInBed 
+ Min.   : 58.0      Min.   : 61.0  
+ 1st Qu.:361.0      1st Qu.:402.0  
+ Median :432.0      Median :463.0  
+ Mean   :419.4      Mean   :458.4  
+ 3rd Qu.:492.0      3rd Qu.:526.0  
+ Max.   :796.0      Max.   :961.0  
+ NA's   :227        NA's   :227   
+ 
+ 
+ #We observe that users with normal sleep quality tend to have consistent and higher daily activity
