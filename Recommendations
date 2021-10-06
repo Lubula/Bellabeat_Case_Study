@@ -1,0 +1,42 @@
+# Company Problem stetement (Buisness Task)
+# Identify business opportunities by analyzing smart device usage data in order to gain insight into consumers trends and 
+# behaviours with non-Bellabeat smart devices. Apply insights to offer high-level recommendations for how these trends can inform 
+# Bellabeat marketing strategy for growth and scale in presentation.
+
+
+#Case study Questions for Analysis.
+
+# What are some trends in smart device usage?
+
+- The majority of the participants are lightly active.
+- On the average, participants sleep 1 time for 7 hours.
+- Body Mass Index(BMI) in the range 20-25 for participants 
+- Calories intake has the most drastic fluctions in terms of from min to max
+- We observe that the majority do not record their weights or BMI.
+- Increasing consistency in daily activity indicates improved user wellness and sleep patterns 
+- We observe that users with normal sleep quality tend to have consistent and higher daily activity
+- People are more active between 5 am and 10pm. Most activity happens between 5pm and 7pm. Participants go to a gym or for a walk after finishing work.
+ 
+
+# How could these trends apply to Bellabeat customers?
+
+- activity, sleep, training intensity, weight and reproductive health are the conerstone of women's health, to maximize Bellabeat's features to empower 
+  women is vital to customer staisfaction. Bellbeat can provide women with knowledge about their own health and habits.
+
+- We can use this time in the Bellabeat app to remind and motivate users to go for a run or walk.  Recommendations Increasing consistency in daily activity indicates 
+  improved user wellness. This focus on wellness ties in with the brand perception
+
+# How could these trends help influence Bellabeat marketing strategy?
+
+- The majority of the participants are lightly active. Using the Bellabeat App to recommend light excersises & activity will reach the majority of clients
+- Body Mass Index(BMI) in the range 20-25 for participants. Using the Bellabeat to monitor those out of range to provide more support on their health journey
+- Calories intake has the most drastic fluctuations in terms of from min to max
+- We observe that the majority do not record their weights or BMI. The minority of users with smart scales or devices that can automatically record 
+  weight indicates an opportunity to expand the product portfolio. 
+- Increasing consistency in daily activity indicates improved user wellness and sleep patterns. THe beallbeat can maximize on these aspects with features
+  and recommmendations to encourage clients.
+- We observe that users with normal sleep quality tend to have consistent and higher daily activity. Clients that have abnormal patterns can be given recommendations 
+  by the Bellabeat app.
+- The bellabeat can begin to provide training, food and health recommendations for after 5pm(as customers train at this time range)
+
+
