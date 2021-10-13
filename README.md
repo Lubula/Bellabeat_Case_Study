@@ -1,4 +1,4 @@
-### Bellabeat_case_study
+## Bellabeat_case_study
 
 About The company:
 
