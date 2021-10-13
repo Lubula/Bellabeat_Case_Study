@@ -1,4 +1,4 @@
-# Bellabeat_case_study
+### Bellabeat_case_study
 
 About The company:
 
@@ -38,14 +38,14 @@ into consumers trends and behaviours with non-Bellabeat smart devices.
 Apply insights to offer high-level recommendations for how these trends can 
 inform Bellabeat marketing strategy for growth and scale in presentation.
 
-Case study Questions for Analysis.
+## Case study Questions for Analysis.
 
 1. What are some trends in smart device usage?
 2. How could these trends apply to Bellabeat customers?
 3. How could these trends help influence Bellabeat marketing strategy?
 
 
-Report will include with the following deliverables:
+## Report will include with the following deliverables:
 
 1. A clear summary of the business task
 2. A description of all data sources used
