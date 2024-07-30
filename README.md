@@ -1,4 +1,4 @@
-## Bellabeat_case_study
+## Bellabeat Case Study: 1st Data Science Project
 
 About The company:
 
